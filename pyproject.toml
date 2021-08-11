@@ -1,0 +1,42 @@
+[tool.poetry]
+description = "a free and open source tool for monitoring product availability at retailers"
+authors = ["Jason Walton <jason@devhour.co>"]
+license = "GNU GPL v3.0"
+name = "shopwatch"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[tool.poetry.dev-dependencies]
+black = "^21.6b0"
+coverage = "^5.5"
+flake8 = "^3.9.2"
+flake8-docstrings = "^1.6.0"
+flake8-import-order = "^0.18.1"
+flake8-tidy-imports = "^4.3.0"
+isort = "^5.9.2"
+pytest = "^6.2.4"
+
+pytest-mock = "^3.6.1"
+taskipy = "^1.8.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.taskipy.tasks]
+start = "python -m shopwatch"
+test = "coverage run -m pytest"
+precommit = "pre-commit install"
+lint = "pre-commit run --all-files"
+
+[tool.isort]
+profile = "black"
+known_first_party = ["shopwatch", "tests"]
+
+[tool.black]
+line-length = 80
+target-version = ['py37']
+include = '\.pyi?$'
